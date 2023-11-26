@@ -1,7 +1,35 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+void play_game() 
+{
+    int random = rand() % 251;
+    std::cout << random << "\n";
+    std::cout << "Guess a number: ";
+    while(true) 
+    {
+        int guess;
+        std::cin >> guess;
+        if (guess == random) 
+        {
+            std::cout << "You win!\n";
+            break;
+        }
+        else if (guess < random)
+        {
+            std::cout << "Too low\n";
+        }
+        else if (guess > random)
+        {
+            std::cout << "Too high\n";
+        }
+    }
+}
 
 int main() 
 {
+    srand(time(NULL));
     int choice;
     do 
     {
@@ -14,7 +42,7 @@ int main()
                 std::cout << "Thanks for nothing\n";
                 return 0;
             case 1:
-              std::cout << "Yo let's play\n";
+                play_game();
                 break;
         } 
     }
