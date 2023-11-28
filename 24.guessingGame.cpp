@@ -1,20 +1,48 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <array>
+#include <vector>
+#include <fstream>
+#include <climits>
 
-void print_array(std::array<int, 251> array, int count) 
+void print_vector(std::vector<int> vector) 
 {
-    for (int i = 0; i < count; i++) 
+    for (int i = 0; i < vector.size(); i++) 
     {
-        std::cout << array[i] << "\t";
+        std::cout << vector[i] << "\t";
     }
     std::cout << "\n";
 }
 
+void save_best_score(int count) 
+{
+    const std::string file_name = "best_score.txt";
+    std::ifstream input(file_name);
+            
+    int best_score;
+    if (input.is_open())
+    {
+        input >> best_score;
+    }
+    else 
+    {
+        best_score = INT_MAX;
+    }
+
+    std::ofstream output(file_name);
+    if (count < best_score)
+    {
+        output << count;
+    } 
+    else 
+    {
+        output << best_score;
+    }
+}
+
 void play_game() 
 {
-    std::array<int, 251> guesses;
+    std::vector<int> guesses;
     int count = 0;
 
     int random = rand() % 251;
@@ -25,7 +53,8 @@ void play_game()
         int guess;
         std::cin >> guess;
 
-        guesses[count++] = guess;
+        count++;
+        guesses.push_back(guess);
 
         if (guess == random) 
         {
@@ -41,7 +70,9 @@ void play_game()
             std::cout << "Too high\n";
         }
     }
-    print_array(guesses, count);
+
+    save_best_score(count);
+    print_vector(guesses);
 }
 
 int main() 
