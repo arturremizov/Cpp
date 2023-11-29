@@ -1,27 +1,30 @@
 #include <iostream>
 #include "math_utils.h"
 
-double area(double length, double width) 
+namespace utils 
 {
-    return length * width;
-}
-
-double area(double length) 
-{
-    return length * length;
-}
-
-double area(Rectangle rectangle) 
-{
-    return rectangle.length * rectangle.width;
-}
-
-double pow(double base, int pow)
-{
-    int total = 1;
-    for(int i = 0; i < pow; i++)
+    double area(double length, double width) 
     {
-        total *= base;
+        return length * width;
     }
-    return total;
+
+    double area(double length) 
+    {
+        return length * length;
+    }
+
+    double area(Rectangle rectangle) 
+    {
+        return rectangle.length * rectangle.width;
+    }
+
+    double pow(double base, int pow)
+    {
+        int total = 1;
+        for(int i = 0; i < pow; i++)
+        {
+            total *= base;
+        }
+        return total;
+    }
 }

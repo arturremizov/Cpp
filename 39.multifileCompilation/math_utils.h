@@ -7,10 +7,13 @@ struct Rectangle
     double width;
 };
 
-double area(double length, double width);
-double area(double length);
-double area(Rectangle rectangle);
+namespace utils 
+{
+    double area(double length, double width);
+    double area(double length);
+    double area(Rectangle rectangle);
 
-double pow(double base, int pow = 2);
+    double pow(double base, int pow = 2);
+}
 
 #endif
